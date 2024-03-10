@@ -18,7 +18,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid white;
   width: 800px;
   min-height: 600px;
   border-radius: 30px;
@@ -81,10 +80,43 @@ body {
 .add_something {
   width: 50px;
   border-radius: 20px;
+  background-color:green;
+  border: none;
   cursor: pointer;
 }
 
 .input_field:focus {
   border: 2px solid #1c62b9;
   box-shadow: inset 0 1px 2px rgba(0,0,0,.4);
+}
+
+/*Generated Tasks*/
+
+.task_container {
+  display: grid;
+  grid-template-columns: 400px 50px;
+  margin-top: 10px;
+  gap: 2px;
+}
+
+.todo_object, .delete_button {
+  height: 50px;
+  margin-top: 10px;
+}
+
+.todo_object {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.delete_button {
+  border: none;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  font-size: 10px;
+  cursor: pointer;
 }
