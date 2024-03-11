@@ -1,4 +1,4 @@
-const todoList = [];
+let todoList = JSON.parse(localStorage.getItem('todoList')) || [];
 
 renderTodoList();
 
@@ -6,13 +6,18 @@ function renderTodoList() {
   let todoListHTML = '';
 
   todoList.forEach((todoObject, index) => {
-    const todo = todoObject.value;
+    const { text, time } = todoObject;
     const html = `
-      <div class="todo_object">${todo}</div>
-      <button class="delete_button">Delete</button> 
+      <div class="todo_object">${text}</div>
+      <div class="todo_object">${time}</div>
+      <button class="delete_button">
+        <i class="fa-solid fa-x" style="color: #ffffff;"></i>
+      </button> 
     `;
     todoListHTML += html;
   });
+
+  localStorage.setItem('todoList', JSON.stringify(todoList));
 
   document.querySelector('.task_container')
     .innerHTML = todoListHTML;
@@ -35,11 +40,16 @@ function addTodo() {
   const inputElement = document.querySelector('.input_field');
   const inputValue = inputElement.value;
 
+  const timeElement = document.querySelector('.time_field');
+  const timeValue = timeElement.value;
+
   todoList.push({
-    value: inputValue
+    text: inputValue,
+    time: timeValue
   });
 
   inputElement.value = '';
+  timeElement.value = '';
 
   renderTodoList();
 }
