@@ -1,3 +1,12 @@
+if ("Notification" in window) {
+  Notification.requestPermission().then(function (permission) {
+    if (Notification.permission !== "granted") {
+      alert("Please allow notification access!");
+      location.reload();
+    }
+  });
+}
+
 let todoList = JSON.parse(localStorage.getItem('todoList')) || [];
 
 renderTodoList();

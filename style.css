@@ -6,7 +6,8 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: white;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: radial-gradient(circle, rgb(87, 110, 119), rgb(8, 42, 58)) !important;
 }
 
 body {
@@ -110,6 +111,7 @@ body {
   align-items: center;
   padding: 20px;
   border-radius: 10px;
+  color: white;
 }
 
 .delete_button {
