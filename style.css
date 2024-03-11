@@ -67,12 +67,12 @@ body {
   outline: none
 }
 
-.input_field, .time_field, .add_something {
+.input_field, .time_field, .date_field, .add_something {
   height: 50px;
   margin-top: 10px;
 }
 
-.input_field, .time_field {
+.input_field, .time_field, .date_field {
   width: 200px;
   padding: 20px;
   border-radius: 10px;
@@ -95,7 +95,7 @@ body {
 
 .task_container {
   display: grid;
-  grid-template-columns: 200px 200px 50px;
+  grid-template-columns: 200px 200px  200px 50px;
   margin-top: 10px;
   gap: 2px;
 }

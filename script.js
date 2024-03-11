@@ -8,6 +8,7 @@ if ("Notification" in window) {
 }
 
 let todoList = JSON.parse(localStorage.getItem('todoList')) || [];
+let timeoutIds = [];
 
 renderTodoList();
 
@@ -15,10 +16,11 @@ function renderTodoList() {
   let todoListHTML = '';
 
   todoList.forEach((todoObject, index) => {
-    const { text, time } = todoObject;
+    const { text, time, date } = todoObject;
     const html = `
       <div class="todo_object">${text}</div>
       <div class="todo_object">${time}</div>
+      <div class="todo_object">${date}</div>
       <button class="delete_button">
         <i class="fa-solid fa-x" style="color: #ffffff;"></i>
       </button> 
@@ -42,7 +44,7 @@ function renderTodoList() {
 
 document.querySelector('.add_something')
   .addEventListener('click', () => {
-    addTodo();
+    scheduleReminder();
   });
 
 function addTodo() {
@@ -52,13 +54,50 @@ function addTodo() {
   const timeElement = document.querySelector('.time_field');
   const timeValue = timeElement.value;
 
+  const dateElement = document.querySelector('.date_field');
+  const dateValue = dateElement.value;
+
   todoList.push({
     text: inputValue,
-    time: timeValue
+    time: timeValue,
+    date: dateValue
   });
 
   inputElement.value = '';
   timeElement.value = '';
+  dateElement.value = '';
 
   renderTodoList();
+}
+
+function scheduleReminder() {
+  const inputElement = document.querySelector('.input_field');
+  const timeElement = document.querySelector('.time_field');
+  const dateElement = document.querySelector('.date_field');
+
+  const inputValue = inputElement.value;
+  const timeValue = timeElement.value;
+  const dateValue = dateElement.value;
+
+  const dateTimeString = dateValue + " " + timeValue;
+  const scheduledTime = new Date(dateTimeString);
+  const currentTime = new Date();
+  const timeDifference = scheduledTime - currentTime;
+
+  if (timeDifference > 0) {
+    addTodo();
+
+    let timeoutId = setTimeout(function () {
+      document.querySelector('.notificationSound').play();
+
+      let notification = new Notification("To-Do:", {
+        body: inputValue,
+        requireInteraction: true,
+      });
+    }, timeDifference);
+
+    timeoutIds.push(timeoutId);
+  } else {
+    alert("The scheduled time is in the past!");
+  }
 }

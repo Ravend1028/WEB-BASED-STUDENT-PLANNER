@@ -44,18 +44,23 @@
   }
   
   /*Body Section*/
+
+  .input_container {
+    display: flex;
+    flex-direction: column;
+  }
   
   :focus {
     outline: none
   }
   
-  .input_field, .time_field, .add_something {
+  .input_field, .time_field, .date_field, .add_something {
     height: 50px;
     margin-top: 10px;
   }
   
-  .input_field, .time_field {
-    width: 150px;
+  .input_field, .time_field, .date_field {
+    width: 200px;
     padding: 20px;
     border-radius: 10px;
   }
@@ -66,6 +71,7 @@
     background-color:green;
     border: none;
     cursor: pointer;
+    align-self: center;
   }
   
   .input_field:focus {
@@ -77,22 +83,22 @@
   
   .task_container {
     display: grid;
-    grid-template-columns: 100px 100px 50px;
+    grid-template-columns: 150px 50px 150px 50px;
     margin-top: 10px;
     gap: 2px;
   }
   
   .todo_object, .delete_button {
     height: 50px;
-    margin-top: 10px;
   }
   
   .todo_object {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
+    margin: 0;
   }
   
   .delete_button {
@@ -102,5 +108,7 @@
     color: white;
     font-size: 10px;
     cursor: pointer;
+    width: 50px;
+    justify-self: center;
   }
 }
