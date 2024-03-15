@@ -83,7 +83,7 @@
   
   .task_container {
     display: grid;
-    grid-template-columns: 150px 50px 150px 50px;
+    grid-template-columns: 150px 100px;
     margin-top: 10px;
     gap: 2px;
   }
@@ -108,7 +108,8 @@
     color: white;
     font-size: 10px;
     cursor: pointer;
-    width: 50px;
+    width: 30px;
+    height: 30px;
     justify-self: center;
   }
 }
